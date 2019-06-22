@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>checkboxTest</title>
+<script language="javascript">
+function selectAll()
+{
+var ch=document.getElementsByName("m");
+for(var i=0;i<ch.length;i++)
+{
+ch[i].checked=true;
+}
+}
+
+function unSelectAll()
+{
+var ch=document.getElementsByName("m");
+for(var i=0;i<ch.length;i++)
+{
+ch[i].checked=false;
+}
+}
+
+function showInfo(){
+    var str="选中项的信息为：";
+var ch=document.getElementsByName("m");
+for(var i=0;i<ch.length;i++)
+{
+    if(ch[i].checked==true){
+        str+=ch[i].value+" ";
+        }
+}
+alert(str);
+}
+</script>
+</head>
+
+<body>
+<input type="checkbox" value="1" name="m"  id="m1"/>旅游</br>
+<input type="checkbox" value="2" name="m" id="m2"/>音乐</br>
+<input type="checkbox" value="3" name="m" id="m3"/>运动
+</br>
+
+<input type="button" value="全选" name="全选"  onclick=selectAll()>
+<input type="reset" name="取消全选" value="取消全选" onclick=unSelectAll()>
+<input type="button" value="显示" name="显示"onclick=showInfo()>
+</body>
+</html>

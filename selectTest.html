@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>selectTest</title>
+<script type="text/javascript" language="javascript">
+    //对下拉框信息进行初始化
+    function init() {
+        for (i = 0; i < 10; i++) {
+            var y = document.createElement("option");//增加一个元素option
+            y.text = '选项' + i;
+            var x=document.getElementById("s1");//根据ID找到列表框
+
+            x.add(y, null); //
+
+        }
+
+    }
+
+    //把选中的选项移到另一边
+    function move(s1, s2) {
+        var index = s1.selectedIndex;
+        if (index == -1) {
+            alert("没有选中值");
+            return;
+        }
+
+        s2.length++;
+        s2.options[s2.length - 1].value = s1.options[index].value;
+        s2.options[s2.length - 1].text = s1.options[index].text;//s1中当前选中的值赋给s2的最后一个元素
+        s1.remove(index);//从s1中移除当前元素
+    }
+
+    //把一边的完全移到另一边
+    function moveAll(s1, s2) {
+        if (s1.length == 0) {
+            alert("没有可用选择");
+            return;
+        }
+        s2.length = s2.length + s1.length;
+        for (var i = 0; i < s1.length; i++) {
+            s2.options[s2.length - s1.length + i].value = s1.options[i].value;
+            s2.options[s2.length - s1.length + i].text = s1.options[i].text;
+        }
+
+        s1.length = 0;
+    }
+</script>
+</head>
+<body onload="init()">
+    <table>
+        <tr>
+            <td><select id="s1" size=10 style="width:100"></select></td>
+
+            <td><input type="button" name="moveToRight" value=">"
+                onClick="move(s1,s2)"> <br>
+            <br> <input type="button" name="moveAllToRight" value=">>"
+                onClick="moveAll(s1,s2)"> <br> <input type="button"
+                name="moveToLeft" value="<" onClick="move(s2,s1)"> <br>
+            <br> <input type="button" name="moveAllToLeft" value="<<"
+                onClick="moveAll(s2,s1)"></td>
+            <td><select id="s2" name="s2" size=10 style="width:100"></select></td>
+
+        </tr>
+    </table>
+
+</body>
+</html>
